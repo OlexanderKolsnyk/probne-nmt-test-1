@@ -342,14 +342,22 @@ button,input,select{font:inherit}button{cursor:pointer}.top{position:sticky;top:
 
 .test-tools{margin-top:16px;padding:15px;border:1px dashed #ffb7a7;border-radius:15px;background:#fff8f5}.test-tools h3{margin:0 0 6px}.test-tools p{margin:0;color:var(--muted);line-height:1.55}.test-tools .actions{margin-top:12px}.test-badge{display:inline-flex;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#172033;color:#fff;font-size:10px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}.version-knock{position:fixed;right:4px;bottom:4px;width:14px;height:14px;opacity:.02;z-index:70}.credential-output{margin-top:14px;padding:14px;border:1px solid #bfe5d2;border-radius:13px;background:#eefaf4;white-space:pre-wrap;overflow-wrap:anywhere}.mobile-nav{display:grid}@media(min-width:720px){.mobile-nav{display:none}}
 
-/* Review fixes: compact answers, mathematical systems, matching and timer. */
+/* Exam UX: wide desktop, resilient session, readable passages and references. */
 .timer-toggle{appearance:none;cursor:pointer}.timer-toggle.time-hidden{min-width:170px}.timer-toggle:focus-visible{outline:3px solid rgba(255,120,104,.25);outline-offset:2px}
-.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.answer{min-height:62px;padding:11px 13px}.answer .option-body{font-size:16px}.answers.image-options{grid-template-columns:repeat(5,minmax(86px,1fr))}.answers.image-options .answer{padding:8px;display:grid;grid-template-columns:28px 1fr;align-items:start}.answers.image-options .option-body svg{width:100%;height:auto;max-height:118px}.answers.image-options .option-id{width:26px;height:26px}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.answer{min-height:62px;padding:11px 13px}.answer .option-body{font-size:16px}
+.answers.image-options{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}.answers.image-options .answer{min-height:174px;padding:10px;display:grid;grid-template-columns:30px 1fr;grid-template-rows:auto 1fr;align-items:start}.answers.image-options .option-body{grid-column:1/-1}.answers.image-options .option-body svg{display:block;width:120px;height:120px;max-height:none;margin:0 auto}.answers.image-options .option-id{width:28px;height:28px}
 .match-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(245px,.65fr);gap:14px;align-items:start}.match-layout .choice-bank{margin-top:0;position:sticky;top:92px}.match-row-v4{grid-template-columns:minmax(0,1fr) 180px}.choice-bank>div{padding:9px 10px}
 .cases{position:relative;display:inline-block;border-left:0;padding-left:20px;line-height:1.55;text-align:left}.cases::before{content:"{";position:absolute;left:0;top:50%;transform:translateY(-54%) scaleY(1.45);font-size:2.15em;font-style:normal;font-family:Georgia,serif}.frac{font-style:normal}
 .source-toolbar span:empty{display:none}.q-actions{justify-content:flex-end}.legend{gap:12px}
-@media(max-width:860px){.match-layout{grid-template-columns:1fr}.match-layout .choice-bank{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.answers.image-options{grid-template-columns:repeat(3,minmax(80px,1fr))}}
-@media(max-width:560px){.answers,.answers.image-options{grid-template-columns:1fr 1fr}.answer{min-height:56px}.match-row-v4{grid-template-columns:1fr}.match-layout .choice-bank{grid-template-columns:1fr}}
+.shared-passage,.shared-passage .cols{column-count:1!important;max-height:none;overflow:visible}.shared-passage mark{background:transparent;color:inherit;padding:0;border:0}.shared-passage mark.current-gap{background:#fff0b5;border:1px solid #e9bd35;border-radius:6px;padding:2px 5px}
+.reference-pdf iframe{display:block;width:100%;height:min(72vh,900px);border:1px solid var(--line);border-radius:14px;background:#f2f4f7}.instruction-intro{margin-bottom:14px;padding:15px 17px;border:1px solid #ffd9cc;border-radius:14px;background:var(--soft2);color:#596376;line-height:1.65}
+.exam-active .top,.exam-active .mobile-nav,.exam-active .footer,.exam-active .version-knock{display:none!important}.exam-active{padding-bottom:0}.exam-active .wrap{width:min(1680px,100%);padding:12px 18px 24px}.exam-active .section#exam{padding-top:0}.exam-active .exam-shell{border-radius:18px}
+@media(min-width:1280px){.topin,.wrap,.footer{width:min(1480px,100%)}.exam-grid{grid-template-columns:230px minmax(0,1fr) 210px;min-height:calc(100vh - 94px)}.exam-main{padding:16px 20px 26px}.side-left,.side-right{padding:16px}.subject-tabs{margin-bottom:14px}.question-card{padding:14px;margin-bottom:12px}.qhead{margin-bottom:9px}.save-row{margin-top:14px}}
+@media(max-width:1080px){.exam-active .wrap{padding:8px 10px 20px}.reference-pdf iframe{height:70vh}}
+@media(max-width:860px){.match-layout{grid-template-columns:1fr}.match-layout .choice-bank{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.answers.image-options{grid-template-columns:repeat(2,minmax(145px,1fr))}}
+@media(max-width:560px){.answers{grid-template-columns:1fr}.answers.image-options{grid-template-columns:1fr 1fr}.answer{min-height:56px}.match-row-v4{grid-template-columns:1fr}.match-layout .choice-bank{grid-template-columns:1fr}.reference-pdf iframe{height:65vh}}
+.reference-pages{display:grid;gap:14px;max-height:72vh;overflow:auto;padding:10px;border:1px solid var(--line);border-radius:14px;background:#eef1f5;overscroll-behavior:contain}.reference-pages img{display:block;width:min(100%,1000px);height:auto;margin:0 auto;border-radius:8px;background:#fff;box-shadow:0 8px 24px rgba(23,32,51,.12)}
+@media(max-width:1080px){.reference-pages{max-height:70vh}}@media(max-width:560px){.reference-pages{max-height:65vh;padding:5px}}
 </style>
 </head>
 <body>
@@ -371,8 +379,8 @@ button,input,select{font:inherit}button{cursor:pointer}.top{position:sticky;top:
 <section id="home" class="section active">
 <div class="hero">
 <div class="card">
-<div class="eyebrow">3 жовтня 2026</div>
-<h1>Пробний мультитест перед справжнім НМТ</h1>
+<div class="eyebrow">Пробний мультитест 2026</div>
+<h1>НМТ буде 3 жовтня о 10:00</h1>
 <p class="lead">Перевір знання, відчуй темп тестування та спокійніше зайди в реальний іспит. Чотири предмети, два етапи та формат, наближений до НМТ.</p>
 <div class="collabline"><b>Пробний мультитест від Kolisnyk Academy × Lessons for You.</b><br>Математика — Kolisnyk Academy. Українська мова, історія України та англійська — Lessons for You.</div>
 <div class="datebox"><span>Реєстрація відкрита до</span><b>2 жовтня 2026 · 23:59</b>
@@ -424,6 +432,7 @@ button,input,select{font:inherit}button{cursor:pointer}.top{position:sticky;top:
 <div class="field full"><label>Місто</label><input id="regCity" autocomplete="address-level2" required placeholder="Київ"></div>
 </div>
 <div class="notice"><b>Перевір Telegram перед відправленням.</b> Вкажи актуальний <b>@username</b>. Якщо username неправильний або з тобою неможливо зв'язатися, ми не зможемо підтвердити участь та надіслати важливу інформацію.</div>
+<div class="notice wait-notice"><b>Після надсилання форми не виходьте із сайту.</b> Дочекайтеся, поки система згенерує й покаже ваші індивідуальні логін і пароль. Через захищене віддалене збереження це може тривати кілька секунд.</div>
 <div class="actions"><button class="btn primary" type="submit">Надіслати заявку</button></div>
 <div id="registrationStatus" class="status"></div>
 </form>
@@ -543,14 +552,10 @@ button,input,select{font:inherit}button{cursor:pointer}.top{position:sticky;top:
       <div class="exam-main">
         <div class="eyebrow">Математика</div>
         <h2>Довідкові матеріали</h2>
-        <p class="sub">Точні інтерактивні завдання з наданих демоваріантів: текст, варіанти, схеми та ілюстрації без вбудованого PDF-переглядача.</p>
-        <div class="ref-grid">
-          <div class="ref-card"><h4>Алгебра</h4><div class="formulas">(a+b)² = a² + 2ab + b²<br>(a−b)² = a² − 2ab + b²<br>a²−b² = (a−b)(a+b)<br>D = b² − 4ac</div></div>
-          <div class="ref-card"><h4>Степені й логарифми</h4><div class="formulas">a⁰ = 1 (a ≠ 0)<br>aˣ·aʸ = aˣ⁺ʸ<br>logₐ(bc)=logₐb+logₐc<br>logₐ(b/c)=logₐb−logₐc</div></div>
-          <div class="ref-card"><h4>Прогресії</h4><div class="formulas">aₙ = a₁ + d(n−1)<br>Sₙ = n(a₁+aₙ)/2<br>bₙ = b₁qⁿ⁻¹</div></div>
-          <div class="ref-card"><h4>Тригонометрія</h4><div class="formulas">sin²α + cos²α = 1<br>tg α = sin α / cos α<br>sin 2α = 2sinαcosα</div></div>
-          <div class="ref-card"><h4>Геометрія</h4><div class="formulas">a²+b²=c²<br>S△ = ½ah<br>S○ = πR²<br>L○ = 2πR</div></div>
-          <div class="ref-card"><h4>Об'ємні фігури</h4><div class="formulas">Vпризми = Sосн·H<br>Vцил = πR²H<br>Vконуса = ⅓πR²H<br>Vкулі = ⁴⁄₃πR³</div></div>
+        <p class="sub">Офіційний довідник формул на 3 сторінки: алгебра, аналіз, тригонометрія, геометрія, координати та вектори.</p>
+        <div class="reference-pdf">
+          <div class="reference-pages" aria-label="Три сторінки довідкових матеріалів"><img src="formuli-page-1.png" alt="Довідкові матеріали, сторінка 1"><img src="formuli-page-2.png" alt="Довідкові матеріали, сторінка 2" loading="lazy"><img src="formuli-page-3.png" alt="Довідкові матеріали, сторінка 3" loading="lazy"></div>
+          <div class="actions"><a class="btn btn-ghost" href="formuli.pdf" target="_blank" rel="noopener">Відкрити PDF на весь екран</a><a class="btn btn-soft" href="formuli.pdf" download>Завантажити PDF</a></div>
         </div>
       </div>
     </div>
@@ -559,14 +564,20 @@ button,input,select{font:inherit}button{cursor:pointer}.top{position:sticky;top:
       <div class="exam-main">
         <div class="eyebrow">Як працювати із тестом</div>
         <h2>Інструкція</h2>
+        <div class="instruction-intro">Перед початком переконайтеся, що пристрій підключений до живлення, інтернет працює стабільно, а браузер не перебуває в режимі приватного перегляду.</div>
         <div class="instruction-list">
-          <div class="instruction-item"><b>Перемикання між предметами.</b> У першому етапі доступні українська мова й математика, у другому — історія України й англійська. Час усередині етапу розподіляєте самостійно.</div>
-          <div class="instruction-item"><b>Збереження відповіді.</b> Вибору варіанта недостатньо: натисніть «Зберегти відповідь». Після цього номер завдання на правій панелі стає кораловим.</div>
-          <div class="instruction-item"><b>Зміна відповіді.</b> До завершення активного етапу можна змінити варіант і повторно натиснути «Зберегти відповідь».</div>
-          <div class="instruction-item"><b>Завершення етапу.</b> Система покаже список завдань без збереженої відповіді. Після підтвердження повернення до цього етапу буде неможливим.</div>
-          <div class="instruction-item"><b>Таймер.</b> Відлік починається з моменту старту тесту. На кожний етап відведено 120 хвилин, між етапами — 20 хвилин перерви.</div>
+          <div class="instruction-item"><b>1. Два етапи.</b> Перший етап триває 120 хвилин і містить українську мову та математику. Після перерви відкривається другий етап — історія України та англійська мова, також на 120 хвилин.</div>
+          <div class="instruction-item"><b>2. Перемикання між предметами.</b> У межах активного етапу можна вільно перемикатися між двома доступними предметами й самостійно розподіляти час.</div>
+          <div class="instruction-item"><b>3. Навігація завданнями.</b> Використовуйте номери на панелі «Завдання». Кораловий номер означає збережену відповідь, сірий — переглянуте завдання без збереженої відповіді.</div>
+          <div class="instruction-item"><b>4. Збереження відповіді.</b> Самого вибору варіанта недостатньо. Для кожного завдання обов'язково натисніть «Зберегти відповідь». Лише після цього відповідь зараховується.</div>
+          <div class="instruction-item"><b>5. Зміна відповіді.</b> До завершення активного етапу можна повернутися до завдання, вибрати інший варіант і повторно натиснути «Зберегти відповідь».</div>
+          <div class="instruction-item"><b>6. Завдання на відповідність.</b> Кожну літеру можна використати лише один раз. Якщо варіант уже обрано в іншому рядку, система не дозволить вибрати його повторно.</div>
+          <div class="instruction-item"><b>7. Таймер.</b> Час продовжує відраховуватися, навіть якщо таймер приховано. Перед завершенням етапу система покаже попередження за 10, 5 та 1 хвилину.</div>
+          <div class="instruction-item"><b>8. Довідкові матеріали.</b> PDF із математичними формулами доступний у вкладці «Довідкові матеріали». Повернутися до завдання можна вкладкою «Іспит».</div>
+          <div class="instruction-item"><b>9. Перезавантаження сторінки.</b> Збережені відповіді, активний етап, таймер і сеанс входу відновляться автоматично. Незбережений вибір поточного завдання відновлюватися не буде.</div>
+          <div class="instruction-item"><b>10. Завершення.</b> Натисніть «Завершити роботу над тестом». Система покаже номери завдань без збережених відповідей і попросить підтвердження. Після підтвердження повернутися до завершеного етапу неможливо.</div>
+          <div class="instruction-item"><b>11. Якщо виникла проблема.</b> Не закривайте вкладку одразу. Спочатку спробуйте один раз перезавантажити сторінку. Якщо проблема залишилася, зробіть знімок екрана й зверніться до організатора.</div>
         </div>
-        <div class="actions"><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://testportal.gov.ua/nmt-2026-dokladna-instruktsiya-z-roboty-v-servisi-testuvannya/">Офіційна інструкція УЦОЯО ↗</a></div>
       </div>
     </div>
   </div>
@@ -682,7 +693,8 @@ const CONFIG={
 const STORAGE={
   participants:"probne_nmt_participants_v36",
   settings:"probne_nmt_settings_v36",
-  answers:"probne_nmt_answers_v36"
+  answers:"probne_nmt_answers_v36",
+  session:"probne_nmt_session_v37"
 };
 
 const LABELS={
@@ -728,12 +740,14 @@ function updatePublicCountdown(){
 }
 updatePublicCountdown();setInterval(updatePublicCountdown,1000);
 
+function readStoredSession(){try{return JSON.parse(localStorage.getItem(STORAGE.session)||"null")}catch(e){return null}}
+const persistedSession=readStoredSession();
 const app={
   view:"home",
-  user:null,
-  stage:0, // 0 not started, 1 first, 2 break, 3 second, 4 finished
-  subject:"ukrainian",
-  questionIndex:0,
+  user:persistedSession?.user||null,
+  stage:persistedSession?.stage||0, // 0 not started, 1 first, 2 break, 3 second, 4 finished
+  subject:persistedSession?.subject||"ukrainian",
+  questionIndex:Number(persistedSession?.questionIndex)||0,
   secondsLeft:7200,
   breakSeconds:1200,
   timerId:null,
@@ -741,7 +755,7 @@ const app={
   answers:JSON.parse(localStorage.getItem(STORAGE.answers)||"{}"),
   visited:JSON.parse(localStorage.getItem("probne_nmt_visited_v4")||"{}"),
   flagged:JSON.parse(localStorage.getItem("probne_nmt_flagged_v4")||"{}"),
-  stageStartedAt:0,stageEndsAt:0,stage2StartsAt:0,warned:{},
+  stageStartedAt:persistedSession?.stageStartedAt||0,stageEndsAt:persistedSession?.stageEndsAt||0,stage2StartsAt:persistedSession?.stage2StartsAt||0,warned:{},
   adminToken:null
 };
 
@@ -774,7 +788,15 @@ async function api(payload){
   return data;
 }
 
+function activeExamStage(){return app.stage===1||app.stage===2||app.stage===3}
+function syncExamMode(){document.body.classList.toggle("exam-active",activeExamStage())}
+function saveExamSession(){
+  if(!app.user)return;
+  localStorage.setItem(STORAGE.session,JSON.stringify({user:app.user,stage:app.stage,subject:app.subject,questionIndex:app.questionIndex,stageStartedAt:app.stageStartedAt,stageEndsAt:app.stageEndsAt,stage2StartsAt:app.stage2StartsAt}));
+}
+function armExamGuard(){if(activeExamStage()&&!history.state?.examGuard)history.pushState({examGuard:true},"",location.href)}
 function showView(id){
+  if(activeExamStage()&&id!=="exam")return;
   app.view=id;
   document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===id));
   document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
@@ -787,12 +809,7 @@ function renderArchivePages(){
 document.querySelectorAll(".archive-block").forEach(x=>x.addEventListener("toggle",()=>{if(x.open)renderArchivePages()}));
 }
 document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.nav)));
-document.getElementById("brandHome").addEventListener("click",()=>{
-  if(app.stage===1||app.stage===3){
-    if(!confirm("Повернутися на головну? Незбережені зміни поточного завдання можуть бути втрачені.")) return;
-  }
-  showView("home");
-});
+document.getElementById("brandHome").addEventListener("click",()=>{if(activeExamStage()){alert("Спочатку завершіть активний етап тестування.");return}showView("home")});
 
 function validTelegram(v){return /^@[A-Za-z0-9_]{5,32}$/.test(v.trim())}
 
@@ -820,6 +837,8 @@ document.getElementById("registrationForm").addEventListener("submit",async e=>{
     city:regCity.value.trim(),
     createdAt:new Date().toISOString()
   };
+  const submitButton=e.currentTarget.querySelector('button[type="submit"]');
+  const submitLabel=submitButton.textContent;submitButton.disabled=true;submitButton.textContent="Генеруємо доступ…";
   try{
     if(CONFIG.SHEETS_ENDPOINT){
       const res=await api(p);
@@ -839,6 +858,7 @@ document.getElementById("registrationForm").addEventListener("submit",async e=>{
       e.target.reset();
     }
   }catch(err){box.className="status err show";box.textContent=err.message}
+  finally{submitButton.disabled=false;submitButton.textContent=submitLabel}
 });
 
 
@@ -857,6 +877,7 @@ loginForm.addEventListener("submit",async e=>{
     }
     if(!user) throw new Error("Невірний логін або пароль.");
     app.user=user;
+    saveExamSession();
     lobbyName.textContent=user.name||user.login||"Учасник";
     box.className="status ok show";box.textContent="Вхід успішний.";
     setTimeout(()=>showView("lobby"),300);
@@ -871,6 +892,7 @@ startTestBtn.addEventListener("click",()=>{
   // If session 1 is finished early, the break lasts until the planned 12:20 point.
   app.stage2StartsAt=app.stageStartedAt+(120+20)*60*1000;
   app.warned={};
+  syncExamMode();saveExamSession();armExamGuard();
   startStageTimer();showView("exam");updateSubjects();renderQuestion();
 });
 
@@ -885,7 +907,7 @@ function updateSubjects(){
 }
 document.querySelectorAll(".subject-tab").forEach(b=>b.addEventListener("click",()=>{
   if(b.disabled)return;
-  app.subject=b.dataset.subject;app.questionIndex=0;updateSubjects();renderQuestion();
+  app.subject=b.dataset.subject;app.questionIndex=0;saveExamSession();updateSubjects();renderQuestion();
 }));
 
 function fmtTime(s){s=Math.max(0,Math.ceil(s));const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),x=s%60;return[h,m,x].map(v=>String(v).padStart(2,"0")).join(":")}
@@ -911,7 +933,7 @@ function startStageTimer(){
   update();app.timerId=setInterval(update,1000);
 }
 function startBreak(automatic=false){
-  app.stage=2;clearInterval(app.timerId);breakModal.classList.add("show");
+  app.stage=2;clearInterval(app.timerId);syncExamMode();saveExamSession();breakModal.classList.add("show");
   app.stage2StartsAt=Math.max(app.stage2StartsAt||0,Date.now()+1000);
   const update=()=>{app.breakSeconds=Math.max(0,Math.ceil((app.stage2StartsAt-Date.now())/1000));breakTimerText.textContent=fmtTime(app.breakSeconds);if(app.breakSeconds<=0){clearInterval(app.breakId);beginStage2()}};
   clearInterval(app.breakId);update();app.breakId=setInterval(update,1000);
@@ -919,14 +941,14 @@ function startBreak(automatic=false){
 function beginStage2(){
   clearInterval(app.breakId);breakModal.classList.remove("show");app.stage=3;app.subject="history";app.questionIndex=0;
   app.stageStartedAt=Date.now();app.stageEndsAt=app.stageStartedAt+7200*1000;app.warned={};
-  updateSubjects();startStageTimer();renderQuestion();showView("exam");
+  syncExamMode();saveExamSession();armExamGuard();updateSubjects();startStageTimer();renderQuestion();showView("exam");
 }
 skipBreakBtn.addEventListener("click",beginStage2);
 startStage2TestBtn.addEventListener("click",()=>{if(!rulesAgree.checked){alert("Спочатку підтвердьте, що ознайомилися з правилами.");return}beginStage2()});
 function resetParticipantProgress(){
   clearInterval(app.timerId);clearInterval(app.breakId);
   app.stage=0;app.subject="ukrainian";app.questionIndex=0;app.secondsLeft=7200;app.breakSeconds=1200;app.answers={};app.visited={};app.flagged={};app.warned={};
-  localStorage.removeItem(STORAGE.answers);localStorage.removeItem("probne_nmt_visited_v4");localStorage.removeItem("probne_nmt_flagged_v4");
+  localStorage.removeItem(STORAGE.answers);localStorage.removeItem(STORAGE.session);localStorage.removeItem("probne_nmt_visited_v4");localStorage.removeItem("probne_nmt_flagged_v4");syncExamMode();
   breakModal.classList.remove("show");resultModal.classList.remove("show");rulesAgree.checked=false;lobbyName.textContent=app.user?.name||app.user?.login||"Учасник";showView("lobby");
 }
 resetProgressBtn.addEventListener("click",resetParticipantProgress);
@@ -986,7 +1008,7 @@ function readAnswer(){
 }
 function saveCurrentAnswer(show=true){
   if(!(app.stage===1||app.stage===3)||!QUESTION_BANK[app.subject]?.length)return;
-  const v=readAnswer();app.answers[keyFor(app.subject,app.questionIndex)]=v;localStorage.setItem(STORAGE.answers,JSON.stringify(app.answers));
+  const v=readAnswer();app.answers[keyFor(app.subject,app.questionIndex)]=v;localStorage.setItem(STORAGE.answers,JSON.stringify(app.answers));saveExamSession();
   if(show){savedMessage.classList.add("show");setTimeout(()=>savedMessage.classList.remove("show"),1400)}renderPalette();
 }
 saveAnswerBtn.addEventListener("click",()=>saveCurrentAnswer(true));
@@ -996,7 +1018,7 @@ function renderPalette(){
     const key=keyFor(app.subject,i),b=document.createElement("button");b.className="qbtn";b.textContent=i+1;
     if(hasSaved(app.answers[key]))b.classList.add("savedQ");else if(app.visited[key])b.classList.add("visitedQ");if(i===app.questionIndex)b.classList.add("current");
     b.setAttribute("aria-label",`Завдання ${i+1}`);
-    b.onclick=()=>{app.questionIndex=i;renderQuestion()};palette.appendChild(b);
+    b.onclick=()=>{app.questionIndex=i;saveExamSession();renderQuestion()};palette.appendChild(b);
   });
 }
 
@@ -1044,7 +1066,7 @@ function scoreQuestion(q,answer){
 }
 function maxQuestion(q){if(q.type==="number")return 2;if(q.type==="match")return q.rows.length;if(q.type==="sequence"||q.type==="multi")return 3;return 1}
 async function finishWholeTest(){
-  clearInterval(app.timerId);app.stage=4;
+  clearInterval(app.timerId);app.stage=4;localStorage.removeItem(STORAGE.session);syncExamMode();
   resultGrid.innerHTML='<div class="result"><span>Результат</span><br><strong>Обчислюємо…</strong></div>';
   resultModal.classList.add("show");
   try{
@@ -1080,7 +1102,7 @@ versionKnock.addEventListener("click",()=>{
   if(knockTimes.length>=6){knockTimes=[];showView("admin")}
 });
 document.addEventListener("keydown",e=>{
-  if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==="k"){e.preventDefault();showView("admin")}
+  if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==="k"){e.preventDefault();if(!activeExamStage())showView("admin")}
 });
 
 async function adminAuth(){
@@ -1149,6 +1171,16 @@ exportAdminCsv.addEventListener("click",async()=>{
     a.href=URL.createObjectURL(blob);a.download="probne_nmt_registrations.csv";a.click();URL.revokeObjectURL(a.href)
   }catch(e){alert(e.message)}
 });
+
+window.addEventListener("beforeunload",e=>{if(activeExamStage()){e.preventDefault();e.returnValue=""}});
+window.addEventListener("popstate",()=>{if(activeExamStage()){history.pushState({examGuard:true},"",location.href);alert("Під час активного тестування вихід заблоковано. Спочатку завершіть етап.")}});
+function restorePersistedSession(){
+  if(!persistedSession?.user||![1,2,3].includes(app.stage))return;
+  lobbyName.textContent=app.user.name||app.user.login||"Учасник";
+  syncExamMode();armExamGuard();showView("exam");updateSubjects();
+  if(app.stage===2){startBreak()}else{renderQuestion();startStageTimer()}
+}
+restorePersistedSession();
 
 /* Публічні налаштування із Google Sheets */
 (async()=>{
