@@ -3,6 +3,7 @@ const CONFIG={
   DEFAULT_DEADLINE:"2026-10-02T23:59",
   DEFAULT_TEST_START:"2026-10-03T10:00",
   DEFAULT_TEST_END:"2026-10-03T14:20",
+  PUBLIC_SITE_MODE:"ended",
   DEMO_LOGIN:"",
   DEMO_PASSWORD:"",
   LOCAL_DEMO:false
@@ -169,7 +170,7 @@ document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()
 function publicTestEnded(settings=getLocalSettings()){
   const raw=settings.testEnd||CONFIG.DEFAULT_TEST_END;
   const end=new Date(raw+(raw.length===16?":00":"")+(/(?:Z|[+-]\d\d:\d\d)$/.test(raw)?"":"+03:00")).getTime();
-  return POST_EVENT_PREVIEW||Number.isFinite(end)&&Date.now()>=end;
+  return CONFIG.PUBLIC_SITE_MODE==="ended"||POST_EVENT_PREVIEW||Number.isFinite(end)&&Date.now()>=end;
 }
 function applyPublicPhase(settings=getLocalSettings()){
   const ended=publicTestEnded(settings);
