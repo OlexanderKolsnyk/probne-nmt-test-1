@@ -151,8 +151,9 @@ function saveExamSession(){
   localStorage.setItem(STORAGE.session,JSON.stringify({version:39,user:app.user,stage:app.stage,subject:app.subject,questionIndex:app.questionIndex,stageStartedAt:app.stageStartedAt,stageEndsAt:app.stageEndsAt,stage2StartsAt:app.stage2StartsAt,attemptStartedAt:app.attemptStartedAt,checkpointAt:Date.now()}));
 }
 function armExamGuard(){if(activeExamStage()&&!history.state?.examGuard)history.pushState({examGuard:true},"",location.href)}
+const POST_EVENT_PREVIEW=new URLSearchParams(location.search).get("state")==="ended";
 function showView(id){
-  if(activeExamStage()&&id!=="exam")return;
+  if(activeExamStage()&&id!=="exam"&&!(id==="ended"&&POST_EVENT_PREVIEW))return;
   app.view=id;
   document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===id));
   document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
@@ -165,7 +166,19 @@ function renderArchivePages(){
 document.querySelectorAll(".archive-block").forEach(x=>x.addEventListener("toggle",()=>{if(x.open)renderArchivePages()}));
 }
 document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.nav)));
-document.getElementById("brandHome").addEventListener("click",()=>{if(activeExamStage()){alert("Спочатку завершіть активний етап тестування.");return}showView("home")});
+function publicTestEnded(settings=getLocalSettings()){
+  const raw=settings.testEnd||CONFIG.DEFAULT_TEST_END;
+  const end=new Date(raw+(raw.length===16?":00":"")+(/(?:Z|[+-]\d\d:\d\d)$/.test(raw)?"":"+03:00")).getTime();
+  return POST_EVENT_PREVIEW||Number.isFinite(end)&&Date.now()>=end;
+}
+function applyPublicPhase(settings=getLocalSettings()){
+  const ended=publicTestEnded(settings);
+  document.body.classList.toggle("test-ended",ended);
+  if(!ended||activeExamStage()&&!POST_EVENT_PREVIEW)return;
+  if(["home","register","login","lobby"].includes(app.view))showView("ended");
+}
+document.getElementById("brandHome").addEventListener("click",()=>{if(activeExamStage()){alert("Спочатку завершіть активний етап тестування.");return}showView(publicTestEnded()?"ended":"home")});
+applyPublicPhase();
 
 function validTelegram(v){return /^@[A-Za-z0-9_]{5,32}$/.test(v.trim())}
 
@@ -536,6 +549,7 @@ window.addEventListener("beforeunload",e=>{if(activeExamStage()){e.preventDefaul
 window.addEventListener("popstate",()=>{if(activeExamStage()){history.pushState({examGuard:true},"",location.href);alert("Під час активного тестування вихід заблоковано. Спочатку завершіть етап.")}});
 function restorePersistedSession(){
   if(!persistedSession?.user||![1,2,3].includes(app.stage))return;
+  if(publicTestEnded()){finishWholeTest(true);return}
   lobbyName.textContent=app.user.name||app.user.login||"Учасник";
   syncExamMode();armExamGuard();showView("exam");updateSubjects();
   if(app.stage===2){startBreak()}else{renderQuestion();startStageTimer()}
@@ -553,7 +567,7 @@ if(pendingResults().length){app.stage=4;syncExamMode();resultGrid.innerHTML='<di
     try{
       const res=await api({action:"publicConfig"});
       if(res.settings){
-        saveLocalSettings(res.settings);renderSocials(res.settings)
+        saveLocalSettings(res.settings);renderSocials(res.settings);applyPublicPhase(res.settings)
       }
     }catch(e){}
   }
