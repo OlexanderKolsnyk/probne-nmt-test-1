@@ -5,20 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Пробний мультитест — Kolisnyk Academy × Lessons for You</title>
 <meta name="description" content="Пробний НМТ у форматі, наближеному до реального тестувальника: реєстрація, персональний доступ, 2 етапи, 20-хвилинна перерва та 4 предмети.">
-<link rel="stylesheet" href="assets/styles.css?v=43">
+<link rel="stylesheet" href="assets/styles.css?v=44">
 </head>
 <body>
 
 <header class="top"><div class="topin">
 <button class="brand" id="brandHome"><span class="logo">PM</span><span><strong>Пробний мультитест</strong><small>Kolisnyk Academy × Lessons for You</small></span></button>
-<nav class="desktop-nav" aria-label="Основна навігація"><button data-nav="home" class="active">Головна</button><button data-nav="register">Реєстрація</button><button data-nav="tutors">Підготовка</button><button data-nav="login">Вхід</button></nav>
+<nav class="desktop-nav" aria-label="Основна навігація"><button data-nav="ended" class="active">Завершити тест</button><button data-nav="tutors">Підготовка</button></nav>
 </div></header>
 
 <nav class="mobile-nav" aria-label="Мобільна навігація">
-<button data-nav="home" class="active">Головна</button>
-<button data-nav="register">Реєстрація</button>
+<button data-nav="ended" class="active">Завершити тест</button>
 <button data-nav="tutors">Підготовка</button>
-<a id="mobileSupport" href="https://t.me/kolisnyk_academy" target="_blank" rel="noopener">Допомога</a>
 </nav>
 
 <main class="wrap">
@@ -73,9 +71,8 @@
   <p class="lead">Пробний НМТ завершився о 14:20. Дякуємо, що перевірили свої знання разом із Kolisnyk Academy × Lessons for You.</p>
   <div class="post-event-note"><b>Якщо ви не встигли пройти або завершити тест — не засмучуйтеся.</b> Це не останнє тестування: ми повідомимо про наступні можливості окремо.</div>
   <div class="actions post-event-actions">
-    <a class="btn primary" href="https://t.me/kolisnyk_academy" target="_blank" rel="noopener">Дізнатися про наступні тести</a>
-    <button class="btn ghost" data-nav="tutors" data-prep-target="mathPrep">Підготовка з математики</button>
-    <button class="btn ghost" data-nav="tutors" data-prep-target="otherPrep">Інші предмети</button>
+    <button class="btn primary" data-nav="ended">Завершити тест</button>
+    <button class="btn ghost" data-nav="tutors">Підготовка з викладачем</button>
   </div>
 </div>
 
@@ -361,12 +358,12 @@
     <h3>Пробний НМТ завершений</h3>
     <p>Результат обчислено лише за відповідями, які були підтверджені кнопкою «Зберегти відповідь».</p>
     <div id="resultGrid" class="result-grid"></div><div id="deliveryState" class="delivery-state hide" role="status" aria-live="polite"></div>
-    <div class="actions"><button id="repeatTestBtn" class="btn primary">Скинути й пройти ще раз</button><button id="resultHome" class="btn ghost">На головну</button><button class="btn btn-ghost" data-nav="tutors">Підготовка з викладачем</button></div>
+    <div class="actions"><button id="resultHome" class="btn primary">Завершити тест</button><button class="btn btn-ghost" data-nav="tutors">Підготовка з викладачем</button></div>
   </div>
 </div>
 
 <script src="assets/exam-data.js?v=40"></script>
-<script src="assets/app.js?v=44"></script>
+<script src="assets/app.js?v=45"></script>
 <div id="warningToast" class="warning-toast" role="status" aria-live="assertive"></div>
 </body>
 </html>
