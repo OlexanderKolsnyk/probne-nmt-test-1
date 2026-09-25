@@ -171,8 +171,10 @@ function saveExamSession(){
 function armExamGuard(){if(activeExamStage()&&!history.state?.examGuard)history.pushState({examGuard:true},"",location.href)}
 const POST_EVENT_PREVIEW=new URLSearchParams(location.search).get("state")==="ended";
 function showView(id){
+  if(publicTestEnded()&&!['ended','tutors'].includes(id))id='ended';
   if(activeExamStage()&&id!=="exam"&&!(id==="ended"&&POST_EVENT_PREVIEW))return;
   app.view=id;
+  if(id==='ended'||id==='tutors')document.getElementById('resultModal')?.classList.remove('show');
   document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id===id));
   document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
   window.scrollTo({top:0,behavior:"smooth"});
@@ -193,7 +195,7 @@ function applyPublicPhase(settings=getLocalSettings()){
   const ended=publicTestEnded(settings);
   document.body.classList.toggle("test-ended",ended);
   if(!ended||activeExamStage()&&!POST_EVENT_PREVIEW)return;
-  if(["home","register","login","lobby"].includes(app.view))showView("ended");
+  if(!["ended","tutors"].includes(app.view))showView("ended");
 }
 document.getElementById("brandHome").addEventListener("click",()=>{if(activeExamStage()){alert("Спочатку завершіть активний етап тестування.");return}showView(publicTestEnded()?"ended":"home")});
 applyPublicPhase();
@@ -470,7 +472,7 @@ async function finishWholeTest(automatic=false){
   if(sent){localStorage.removeItem(STORAGE.session)}
   else{deliveryState.className="delivery-state";deliveryState.textContent="Результат надійно збережено в черзі цього браузера. Надсилання повториться автоматично після відновлення інтернету."}
 }
-repeatTestBtn.addEventListener("click",resetParticipantProgress);resultHome.addEventListener("click",()=>{resultModal.classList.remove("show");showView("home")});
+resultHome.addEventListener("click",()=>{resultModal.classList.remove("show");showView("ended")});
 
 /* Соцмережі */
 function socialIcon(name){
