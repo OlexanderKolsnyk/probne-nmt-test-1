@@ -26,6 +26,26 @@ const LABELS={
   english:"Англійська мова · демо 2024"
 };
 
+const DEFAULT_SOCIALS={
+  math:{
+    telegram:"https://t.me/kolisnyk_academy",
+    tiktok:"https://www.tiktok.com/@kolisnyk_academy",
+    site:"https://olexanderkolsnyk.github.io/Kolisnyk-Academy/",
+    viber:"https://r.mssg.me/m/697bfcc0610fc48495b6ee1d",
+    instagram:"https://www.instagram.com/kolisnyk_academy",
+    youtube:"https://www.youtube.com/@kolisnyk_academy"
+  },
+  other:{
+    telegram:"https://t.me/lessons4you",
+    tiktok:"https://www.tiktok.com/@lessons.4.you?is_from_webapp=1&sender_device=pc",
+    site:"https://www.lessons4you.party",
+    instagram:"https://www.instagram.com/lessons.4.you?stkn=eWkzbnVybnd5M3U0"
+  }
+};
+function mergedSocials(value={}){
+  return {math:{...DEFAULT_SOCIALS.math,...(value.math||{})},other:{...DEFAULT_SOCIALS.other,...(value.other||{})}}
+}
+
 /* Точний порядок ФОРМ завдань за НМТ-2026:
    Українська: 1–25 single, 26–30 matching
    Математика: 1–15 single5, 16–18 matching3, 19–22 numeric
@@ -88,10 +108,7 @@ function getLocalSettings(){
     testStart:x.testStart||CONFIG.DEFAULT_TEST_START,
     testEnd:x.testEnd||CONFIG.DEFAULT_TEST_END,
     registrationOpen:x.registrationOpen!==false,
-    socials:x.socials||{
-      math:{telegram:"",instagram:"",tiktok:""},
-      other:{telegram:"",instagram:"",tiktok:""}
-    }
+    socials:mergedSocials(x.socials)
   };
 }
 function saveLocalSettings(s){localStorage.setItem(STORAGE.settings,JSON.stringify(s))}
@@ -460,9 +477,9 @@ function socialIcon(name){
   const paths={telegram:'<path d="M21 3 3.8 9.6c-1.2.5-1.2 1.2-.2 1.5l4.4 1.4 1.7 5.2c.2.7.1 1 .8 1 .5 0 .8-.2 1-.5l2.5-2.4 5 3.7c.9.5 1.6.2 1.8-.9L23 4.5C23.3 3.2 22.5 2.6 21 3Z"/>',instagram:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>',tiktok:'<path d="M15 4v10.2a4.2 4.2 0 1 1-3.6-4.1M15 4c.8 2.5 2.3 3.8 5 4"/>',site:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',viber:'<path d="M5 4.8A10.5 10.5 0 0 1 19 5c2.2 2.2 2.4 7.5.7 10.2-1.5 2.3-4.8 3.8-8 3.4L7 21v-3.7C3.6 14.8 2.6 8.3 5 4.8Z"/>',youtube:'<path d="M21 8.2a2.7 2.7 0 0 0-1.9-1.9C17.4 5.8 12 5.8 12 5.8s-5.4 0-7.1.5A2.7 2.7 0 0 0 3 8.2 28 28 0 0 0 2.5 12 28 28 0 0 0 3 15.8a2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.1.5 7.1.5s5.4 0 7.1-.5a2.7 2.7 0 0 0 1.9-1.9 28 28 0 0 0 .5-3.8 28 28 0 0 0-.5-3.8Z"/><path d="m10 9 5 3-5 3Z"/>'};
   return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+(paths[name]||paths.site)+'</svg>';
 }
-function socialButton(name,label,url){return url?'<a class="social" target="_blank" rel="noopener" href="'+esc(url)+'" aria-label="'+esc(label)+'" title="'+esc(label)+'">'+socialIcon(name)+'</a>':''}
+function socialButton(name,label,url){return url?'<a class="social" target="_blank" rel="noopener" href="'+esc(url)+'" aria-label="'+esc(label)+'" title="'+esc(label)+'" data-label="'+esc(label)+'">'+socialIcon(name)+'</a>':''}
 function renderSocials(settings=getLocalSettings()){
-  const s=settings.socials||{},m=s.math||{},o=s.other||{};
+  const s=mergedSocials(settings.socials),m=s.math,o=s.other;
   mathSocials.innerHTML=socialButton("telegram","Telegram Kolisnyk Academy",m.telegram)+socialButton("tiktok","TikTok Kolisnyk Academy",m.tiktok)+socialButton("site","Сайт Kolisnyk Academy",m.site)+socialButton("viber","Viber Kolisnyk Academy",m.viber)+socialButton("instagram","Instagram Kolisnyk Academy",m.instagram)+socialButton("youtube","YouTube Kolisnyk Academy",m.youtube);
   otherSocials.innerHTML=socialButton("telegram","Telegram Lessons for You",o.telegram)+socialButton("tiktok","TikTok Lessons for You",o.tiktok)+socialButton("site","Сайт Lessons for You",o.site)+socialButton("instagram","Instagram Lessons for You",o.instagram);
 }
@@ -502,7 +519,7 @@ async function loadAdmin(){
   adminDeadline.value=(s.deadline||CONFIG.DEFAULT_DEADLINE).slice(0,16);
   adminTestStart.value=(s.testStart||CONFIG.DEFAULT_TEST_START).slice(0,16);
   adminRegOpen.value=s.registrationOpen===false?"no":"yes";
-  const social=s.socials||{math:{},other:{}};
+  const social=mergedSocials(s.socials);
   mathTelegram.value=social.math?.telegram||"";
   mathInstagram.value=social.math?.instagram||"";
   mathTiktok.value=social.math?.tiktok||"";
